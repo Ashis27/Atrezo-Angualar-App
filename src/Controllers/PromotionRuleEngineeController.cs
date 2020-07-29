@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EShopOnPromotionEngineeRule.API.Dtos;
+using EShopOnPromotionEngineeRule.API.DTOs;
 using EShopOnPromotionEngineeRule.API.Interfaces;
 using EShopOnPromotionEngineeRule.API.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -74,7 +75,7 @@ namespace EShopOnPromotionEngineeRule.API.Controllers
             var cartDto = new CartDto
             {
                 CartId = Guid.NewGuid().ToString(),
-                CartItems = cart.CartItems != null && cart.CartItems.Count() > 0 ? cart.CartItems : defaultCartItems
+                CartItems = cart.CartItems != null && cart.CartItems.Count() > 0 && cart.CartItems.FirstOrDefault().Quantity > 0 ? cart.CartItems : defaultCartItems
             };
             var result = _checkoutService.Checkout(cartDto);
             return result;
