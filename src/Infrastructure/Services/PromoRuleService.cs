@@ -10,6 +10,11 @@ namespace EShopOnPromotionEngineeRule.API.Infrastructure.Services
 {
     public class PromoRuleService : IPromoRuleService
     {
+
+        /// <summary>
+        /// Promotion rule engine configuration
+        /// </summary>
+        /// <returns></returns>
         public List<PromoOffer> GetPromoRules()
         {
             var promoRuleDirectory = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot\\{"SeedData\\promotionRuleEnginee.json"}");

@@ -10,21 +10,19 @@ using System.Linq;
 using System.Text;
 using Xunit;
 
-namespace ShoppingCart.Tests
+namespace EShopOnPromotionRuleEnginee.test
 {
     public class PromoRuleTests
     {
         private PromoOfferManager _promoCalculator;
         private Mock<IProductService> _mockProductService;
         private Mock<ICartService> _mockCartService;
-        private Mock<IPromoRuleService> _mockPromoRuleService;
 
         public PromoRuleTests()
         {
             _promoCalculator = PromoOfferManager.Instance;
             _mockProductService = new Mock<IProductService>();
             _mockCartService = new Mock<ICartService>();
-            _mockPromoRuleService = new Mock<IPromoRuleService>();
         }
 
         [Fact]

@@ -16,6 +16,10 @@ namespace EShopOnPromotionEngineeRule.API.Infrastructure.Services
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Get basket items from static json file
+        /// </summary>
+        /// <returns></returns>
         public List<CartItemDto> GetCartItems()
         {
             var cartDir = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot\\{"SeedData\\basket.json"}");

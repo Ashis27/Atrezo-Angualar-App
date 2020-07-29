@@ -15,6 +15,10 @@ namespace EShopOnPromotionEngineeRule.API.Infrastructure.Services
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Get product data from static json file
+        /// </summary>
+        /// <returns>ProductDto</returns>
         public List<ProductDto> GetProductsFromStore()
         {
             // get the products from json file. Will get it from the db
