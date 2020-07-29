@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EShopOnPromotionEngineeRule.API.Infrastructure.Services;
+using EShopOnPromotionEngineeRule.API.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace EShopOnPromotionEngineeRule.API
 {
@@ -26,6 +29,11 @@ namespace EShopOnPromotionEngineeRule.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton<IProductService, ProductService>();
+            services.AddSingleton<ICartService, CartService>();
+            services.AddSingleton<IPromoRuleService, PromoRuleService>();
+            services.AddSingleton<ICheckoutService, CheckoutService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
