@@ -51,12 +51,10 @@ namespace EShopOnPromotionEngineeRule.API
                     Version = "v1",
                     Title = "eShop Promotion Rule Enginee API",
                     Description = "eShop Promotion Rule Enginee ASP.NET Core Web API",
-                    //TermsOfService = new Uri("https://example.com/terms"),
                     Contact = new OpenApiContact
                     {
                         Name = "Ashis Mahapatra",
                         Email = "ashish.mahapatra1991@gmail.com",
-                        Url = new Uri("#"),
                     },
                 });
             });
@@ -76,9 +74,16 @@ namespace EShopOnPromotionEngineeRule.API
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.UseCors("CorsPolicy");
 
-            app.UseAuthorization();
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "eShop Promotion Rule enginee API V1");
+            });
+
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
