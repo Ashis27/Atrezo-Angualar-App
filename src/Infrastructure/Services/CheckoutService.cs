@@ -23,11 +23,17 @@ namespace EShopOnPromotionEngineeRule.API.Infrastructure.Services
             _productService = productService;
             _promoCalculator = PromoOfferManager.Instance;
         }
+
+        /// <summary>
+        /// Apply promo code and calculate price after discount.
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns></returns>
         public CartDto Checkout(CartDto cart)
         {
             var products = _productService.GetProductsFromStore();
-            var cartItems = cart.CartItems != null && cart.CartItems.Count() > 0 ? cart.CartItems : _cartService.GetCartItems(); // TO DO: This will be the cart.CartItems
-            cartItems.ForEach(item =>
+
+            cart.CartItems.ForEach(item =>
             {
                 if (!products.Select(p => p.SKU).Contains(item.SKU))
                 {
@@ -35,13 +41,16 @@ namespace EShopOnPromotionEngineeRule.API.Infrastructure.Services
                 }
                 item.UnitPrice = products.First(p => p.SKU == item.SKU).Price;
             });
+
             var promoOffers = _promoRuleService.GetPromoRules();
-            var cartItemsWithOfferPrice = _promoCalculator.CalculateOfferPrice(_promoCalculator.ApplyPromoRule(cartItems, promoOffers), promoOffers);
+            var cartItemsWithOfferPrice = _promoCalculator.CalculateOfferPrice(_promoCalculator.ApplyPromoRule(cart.CartItems, promoOffers), promoOffers);
+           
             var cartDto = new CartDto
             {
                 CartId = !string.IsNullOrEmpty(cart.CartId) ? cart.CartId : Guid.NewGuid().ToString(),
                 CartItems = cartItemsWithOfferPrice
             };
+
             return cartDto;
         }
     }
