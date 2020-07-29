@@ -30,6 +30,36 @@ namespace EShopOnPromotionEngineeRule.API
         {
             services.AddControllers();
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                 .AddControllersAsServices(); //Injecting Controllers themselves thru DI
+                                              //For further info see: http://docs.autofac.org/en/latest/integration/aspnetcore.html#controllers-as-services
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });             //For further info see: http://docs.autofac.org/en/latest/integration/aspnetcore.html#controllers-as-services
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "eShop Promotion Rule Enginee API",
+                    Description = "eShop Promotion Rule Enginee ASP.NET Core Web API",
+                    //TermsOfService = new Uri("https://example.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Ashis Mahapatra",
+                        Email = "ashish.mahapatra1991@gmail.com",
+                        Url = new Uri("#"),
+                    },
+                });
+            });
             services.AddSingleton<IProductService, ProductService>();
             services.AddSingleton<ICartService, CartService>();
             services.AddSingleton<IPromoRuleService, PromoRuleService>();
