@@ -1,4 +1,4 @@
-﻿using EShopOnPromotionEngineeRule.API.Dtos;
+﻿using EShopOnPromotionEngineeRule.API.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -19,3 +19,4 @@ google-services/
 /src/Infrastructure/Interfaces
 /src/Models
 /src/Infrastructure/Services
+/test/PromoRuleTests.cs

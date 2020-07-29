@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace ShoppingCart.Tests
+namespace EShopOnPromotionRuleEnginee.test
 {
     public class ProductTests
     {
