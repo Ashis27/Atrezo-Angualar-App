@@ -14,9 +14,3 @@ www/
 google-services/
 .sourcemaps
 /.gitattributes
-/src/DTOs
-/src/Controllers/PromotionRuleEngineeController.cs
-/src/Infrastructure/Interfaces
-/src/Models
-/src/Infrastructure/Services
-/test/PromoRuleTests.cs
